@@ -1,0 +1,49 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+	var calculator = (function(){
+    // Our private data
+    var total = 0; 
+
+    return {
+    	// Our namespaced methods
+        getTotal: function(){
+        	return total; 
+        },
+        add: function(num){
+            total = total + num; 
+            
+        },
+        subtract: function(num){
+            total = total - num; 
+        },
+        multiply: function(num){
+            total = total * num;
+        } ,
+        divide: function(num){
+            total = total / num; 
+        }
+
+    }
+})();
+
+
+calculator.add(7);
+console.log(calculator.getTotal());
+calculator.multiply(800);
+console.log(calculator.getTotal());
+calculator.divide(200);
+console.log(calculator.getTotal());
+
+</script>
+
+</body>
+</html>
