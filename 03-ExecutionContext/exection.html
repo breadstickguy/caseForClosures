@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Execution Context</title>
+</head>
+<body>
+	<h1>Open the console!</h1>
+	<script type="text/javascript">
+		var x = 10;
+		function foo(a) {
+			console.log(x); // 10 - We can see the outer value inside!
+			console.log(a); // 5 - The value the function is called with
+			var b = 20;
+
+			function bar(c) {
+				console.log(b); // 20 - Value from the outer scope
+				console.log(c); // 15 - This value comes from the function call on line 36
+				var d = 30;
+				return boop(x + a + b + c + d); // return all the math!
+			}
+
+			function boop(e) {
+				console.log(e); // All the math from line 19!
+				return e * -1;
+			}
+
+			return bar;
+		}
+
+		var moar = foo(5); // Closure  
+		  /* 
+		  The function below executes the function bar which was returned 
+		  when we executed the function foo in the line above. The function bar 
+		  invokes boop, at which point bar gets suspended and boop gets pushed 
+		  onto the top of the call stack
+		  */
+		  console.log(moar(15));
+	</script>
+
+</body>
+</html>
