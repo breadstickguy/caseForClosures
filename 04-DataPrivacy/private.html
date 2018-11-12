@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Data Privacy</title>
+</head>
+<body>
+	<h1>Open the console!</h1>
+	<script type="text/javascript">
+		
+		/*  In order to ensure data privacy, while still being able to access the information, we need to use an IIFE or Immediately Invoked Function Expression.
+		
+		This is accomplished by wrapping our anonymous function in parenthesis and immediately calling it as soon as it's complete.
+		*/
+
+		// Here we start our closure. Note the "extra" parenthesis.
+		var passwordIsTaco = (function(){
+			// We define our secret data here
+			var password = "taco";
+			// Returning a function allows us to execute the function and get the secret information!
+			return function getPassword() {
+				// See? The password really is taco!
+				console.log(password);
+			}
+
+		})();
+		// Execute our outer function and see the private data!
+		passwordIsTaco();
+		// Notice, that we cannot access the password outside our closure. This throws an error in the console.
+		console.log(password);
+	</script>
+
+</body>
+</html>

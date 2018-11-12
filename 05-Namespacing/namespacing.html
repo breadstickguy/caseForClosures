@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Namespacing</title>
+</head>
+<body>
+	<h1>Open the console and see the names!</h1>
+
+	<script type="text/javascript">
+		// Here is our closure and an IIFE
+		var dwightSalary = (function() {
+			// The private variable for our module to use
+			var salary = 60000;
+
+			// Here we define a private method/function. This function can only be accessed other functions within the closure. It cannot be accessed or executed by anything outside
+			function changeBy(amount) {
+				salary += amount;
+			}
+
+			// By having our outer function return an object containing other functions, we create publicly accessible methods that can see and modify our private variables. These functions can be called as part of the dwightSalary object and are namespaced as well! We can reuse the names of these functions elsewhere without causing an issue.
+
+			// This is known as the Module pattern within Javascript. These functions call the private function and modify the private variable while being accessible outside the closure.
+			return {
+				raise: function() {
+					changeBy(5000);
+				},
+				lower: function() {
+					changeBy(-5000);
+				},
+				currentAmount: function() {
+					return salary;
+				}
+			}; 
+		})();
+
+		console.log(dwightSalary.currentAmount()); // $60,000
+		dwightSalary.raise();
+		console.log(dwightSalary.currentAmount()); // $65,000
+		dwightSalary.lower();
+		dwightSalary.lower();
+		console.log(dwightSalary.currentAmount()); // $55,000
+
+		dwightSalary.changeBy(10000) // TypeError: undefined is not a function
+
+
+		// Here we see we can reuse the function name, with no issues! Comment the line above to demonstrate
+		function raise() {
+			console.log('Raise the roof!')
+		}
+
+		raise();
+	</script>
+
+</body>
+</html>
