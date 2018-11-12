@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Build your own closure!</title>
+</head>
+<body>
+	<h1>Open the console and see your results!</h1>
+
+	<script type="text/javascript">
+		
+		// Our outer scope function defines the closure scope
+		function whoIAm() {
+			// Outer scope variables
+			var name = "JJ Brenner";
+			var age = 35;
+			var occupation = 'Coding Ninja';
+
+			// Our inner scope function creates the closure! Inner functions can access the values in the surrounding scope
+			function printDetails() {
+				console.log('Hello, my name is ' + name);
+				console.log('I am ' + age + ' years old');
+				console.log('I current work as a ' + occupation);
+			}
+
+			// This inner function modifies a value in the outer scope
+			function getOlder() {
+				age++;
+				console.log('Now I am ' + age + ' years old');
+			}
+
+
+			// Run your functions!
+			printDetails();
+			getOlder();
+			printDetails();
+		}
+		// Run everything!
+		whoIAm();
+
+	</script>
+
+
+
+</body>
+</html>

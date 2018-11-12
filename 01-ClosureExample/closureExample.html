@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>The Case for Closures</title>
+</head>
+<body>
+	<h1>Open the console to see the output!</h1>
+	<script type="text/javascript">
+		//Here is the outer function that defines our closure scope
+		function pam() {
+			//The outer function "pam" does 3 things
+			//1. Define a local variable, name
+			//2. Define a function , displayName()
+			//3. return sayName();
+
+    		var name = "Pam Beesly";
+    		function sayName() {
+    			//This function doesn't define any variables, but it still has access to the surrounding function's scope because of the closure that is created
+        		console.log('Hello my name is ' + name);
+    		}
+    		sayName(); 
+		}
+		pam();
+
+		//Closures can also modify the outer scope
+		function jim() {
+			var name = "Jim Halpert";
+			function sayName() {
+				console.log('Hello my name is ' + name);
+			}
+			//The setName function changes the value of the variable in the closure
+			function setName(newName) {
+				name = newName;
+			}
+			sayName();
+			setName("Michael Scott");
+			sayName();
+		}
+		jim();
+
+	</script>
+
+</body>
+</html>
